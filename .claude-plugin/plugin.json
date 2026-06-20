@@ -3,11 +3,11 @@
   "description": "Frontend design taste skills including brutalist, minimalist, soft, redesign, stitch, and more",
   "version": "1.0.0",
   "author": {
-    "name": "leonxlnx",
+    "name": "gmi-security",
     "email": ""
   },
-  "homepage": "https://github.com/leonxlnx/taste-skill",
-  "repository": "https://github.com/leonxlnx/taste-skill",
+  "homepage": "https://github.com/gmi-security/taste-skill",
+  "repository": "https://github.com/gmi-security/taste-skill",
   "license": "MIT",
   "keywords": [
     "skills",

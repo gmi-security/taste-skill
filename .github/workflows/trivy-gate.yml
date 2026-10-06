@@ -42,8 +42,17 @@ jobs:
             --timeout 15m \
             .
 
+      # continue-on-error: this repo's GITHUB_TOKEN can't complete the
+      # code-scanning upload here (confirmed: "Resource not accessible by
+      # integration" on the workflow-runs lookup, while this same repo's
+      # GitHub-managed default-setup CodeQL analysis uploads its own SARIF
+      # fine) -- a private-repo Advanced Security entitlement gap for
+      # custom-workflow uploads specifically, not something this workflow
+      # can fix. The trivy fs --exit-code 1 above is the actual gate; losing
+      # the inline PR annotations here must not also swallow that result.
       - name: Upload vulnerability/misconfig findings (with fix guidance) to GitHub
         if: always()
+        continue-on-error: true
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: trivy-vuln-misconfig.sarif
@@ -62,6 +71,7 @@ jobs:
 
       - name: Upload secret findings to GitHub
         if: always()
+        continue-on-error: true
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: trivy-secrets.sarif
